@@ -1,8 +1,6 @@
 console.log("Welcome in Address book");
 class AddressBook{
     //property
-    firstName;
-    lastName;
     address;
     city;
     state;
@@ -15,17 +13,57 @@ class AddressBook{
         this.firstName=firstName;
         this.lastName=lastName;
         this.address=address;
-        this.city=address;
+        this.city=city;
         this.state=state;
         this.zip=zip;
         this.phone=phone;
         this.email=email;
     }
+    set firstName(firstName){//Set Firt name
+        let regex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+        if (regex.test(firstName)) {
+        this._firstName = firstName;
+        } else throw "Incorrect  Fist name";
+    }
+    get firstName(){return this._firstName}
+    
+    set lastName(lastName){//set Last Name
+        let regex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+        if (regex.test(lastName)) {
+        this._lastName = lastName;
+        } else throw "Incorrect  Last name";
+    }
+    get lastName(){return this._lastName}
+
+    set address(address){//set address
+        let regex = RegExp("^[A-Z]{1}[a-z]{3,}$");
+        if (regex.test(address)) {
+        this._address = address;
+        } else throw "Incorrect  Address";
+    }
+    get address(){return this._address}
+
+    set city(city){///set City
+        let regex = RegExp("^[A-Z]{1}[a-z]{3,}$");
+        if (regex.test(city)) {
+        this._city = city;
+        } else throw "Incorrect city Name";
+    }
+    get city(){return this._city}
+
+    set state(state){///set State
+        let regex = RegExp("^[A-Z]{1}[a-z]{3,}$");
+        if (regex.test(state)) {
+        this._state = state;
+        } else throw "Incorrect state Name";
+    }
+    get state(){return this._state}
 
 }
 var prompt = require('prompt-sync')();
 //let addressBook=new AddressBookModel();
 function getData(){
+    try{
     let readline =require('prompt-sync')();
     let firstName=readline("Enter the First Name : ");
     let lastName=readline("Enter the Last Name : ");
@@ -36,6 +74,10 @@ function getData(){
     let phone=readline("Enter the phone Number : ");
     let email=readline("Enter the Email id : ");
     return(new AddressBook(firstName,lastName,address,city,state,zip,phone,email));
+    }
+    catch(e){
+        console.log(e);
+    }
 }
-
-console.log(getData);
+let m=getData();
+console.log(m);
